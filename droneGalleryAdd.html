@@ -17,40 +17,25 @@
           </div>
     </div>
     
-    <?php include 'droneGalleryPHP.php';
-     display();
-    ?>
-    
+
     <script>
-    function WriteToFile(passForm) {
+    function insertNewDroneData(passForm) {
         var newLocation = passForm.addLocation.value;
         var newWorkspace = passForm.addWorkspace.value;
         var newStoreLayerName = passForm.addStoreLayerName.value;
         var newXCoor = passForm.addXCoor.value;
         var newYCoor = passForm.addYCoor.value;
         var newLine = newLocation + ", " + newWorkspace + ", " + 
-            newStoreLayerName + ", " + newXCoor + ", " + newYCoor ;
+        newStoreLayerName + ", " + newXCoor + ", " + newYCoor ;
         console.log(newLine);
      }
-
-
-function mainInfo(id) {
-    $.ajax({
-        type: "GET",
-        url: "droneGalleryPHP.php",
-        data: "mainid =" + id,
-        success: function(result) {
-            $("#somewhere").html(result);
-        }
-    });
-};
 
     </script>
 
 
 
     <!-- Drop down menu for change of location -->
-    <form>
+    <form id = "newData">
         Location Name<br>
         <input type="text" name="addLocation">
         <br>
@@ -65,13 +50,22 @@ function mainInfo(id) {
         <br>
         Y-Coordinate<br>
         <input type="text" name="addYCoor"><br>
-        <input type="button" value="submit" onchange="mainInfo(this.value)">
+        <input type="button" value="submit" onclick="insertNewDroneData(this.form)">
     </form>
 
     <a href="droneGallery.html">Return</a>
 
     
+
     <script>
+    //http://nodeexamples.com/2012/09/21/connecting-to-a-postgresql-database-from-node-js-using-the-pg-module/
+//http://www.tothenew.com/blog/connect-to-postgresql-using-javascript/
+    //http://php.net/manual/en/function.pg-connect.php
+    //http://www.w3resource.com/PostgreSQL/PostgreSQL-insert.php
+
+
+
+
 // Location Name,Workspace,GeoServer Store/Layer Name,Xcoor,Ycoor
 // North Beach,dronegallery,northbeach,31.689536,-81.135932
 // Mexico Rocks,dronegallery,mexico_rocks,17.976048,-87.935484
