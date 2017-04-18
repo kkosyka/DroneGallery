@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Drone Gallery</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico" />
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
+    <link rel="stylesheet" href="droneGalleryCSS.css" />
+	<script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+</head>
+<body>
+    <div id="header">
+          <div class="wrap">
+               <p>Drone Gallery</p>
+          </div>
+    </div>
+    
+    <?php include 'droneGalleryPHP.php';
+     display();
+    ?>
+    
+    <script>
+    function WriteToFile(passForm) {
+        var newLocation = passForm.addLocation.value;
+        var newWorkspace = passForm.addWorkspace.value;
+        var newStoreLayerName = passForm.addStoreLayerName.value;
+        var newXCoor = passForm.addXCoor.value;
+        var newYCoor = passForm.addYCoor.value;
+        var newLine = newLocation + ", " + newWorkspace + ", " + 
+            newStoreLayerName + ", " + newXCoor + ", " + newYCoor ;
+        console.log(newLine);
+     }
+
+
+function mainInfo(id) {
+    $.ajax({
+        type: "GET",
+        url: "droneGalleryPHP.php",
+        data: "mainid =" + id,
+        success: function(result) {
+            $("#somewhere").html(result);
+        }
+    });
+};
+
+    </script>
+
+
+
+    <!-- Drop down menu for change of location -->
+    <form>
+        Location Name<br>
+        <input type="text" name="addLocation">
+        <br>
+        Workspace<br>
+        <input type="text" name="addWorkspace">
+        <br>
+        GeoServer Store/Layer Name<br>
+        <input type="text" name="addStoreLayerName">
+        <br>
+        X-Coordinate<br>
+        <input type="text" name="addXCoor">
+        <br>
+        Y-Coordinate<br>
+        <input type="text" name="addYCoor"><br>
+        <input type="button" value="submit" onchange="mainInfo(this.value)">
+    </form>
+
+    <a href="droneGallery.html">Return</a>
+
+    
+    <script>
+// Location Name,Workspace,GeoServer Store/Layer Name,Xcoor,Ycoor
+// North Beach,dronegallery,northbeach,31.689536,-81.135932
+// Mexico Rocks,dronegallery,mexico_rocks,17.976048,-87.935484
+// Belizean Estates,dronegallery,belizean_estates,17.976048,-87.935484
+// Sewall Marsh,dronegallery,sewall_marsh,43.723877,-69.829684
+
+
+    </script>
+</body>
+</html>
