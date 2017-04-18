@@ -26,6 +26,8 @@
         <option value="sewall_marsh">Sewall Marsh</option>
     </select>
 
+    <a href="droneGalleryAdd.html">Add Drone!</a>
+
     <!-- map -->
     <div id="mapid"></div>
     
@@ -43,9 +45,10 @@
         }).addTo(mymap);
 
         //Update location on map based on dropdown
+        // go into CSV file and file address that matches & then get x & y...
         $("#locationMap").change(function() {
             var addr = ($('#locationMap').val());
-            console.log(addr);
+            //console.log(addr);
             if (addr == "northbeach"){
                 mymap.setView([31.689536, -81.135932],16);
             }
@@ -59,6 +62,8 @@
                 mymap.setView([43.723877, -69.829684],16);
             }
           });
+
+
         
         //display each drone images on map from GeoServer
         function droneGallery(location){
@@ -74,6 +79,9 @@
 
         //list of drone images uploaded geoserver
         var listLocations = ["northbeach", "mexico_rocks", "belizean_estates", "sewall_marsh"];
+        var JSONex = {"0":"1","1":"2","2":"3","3":"4"};
+
+
         //loop through listLocations, to upload each item onto map
         for (var i = 0; i<listLocations.length; i++){
             droneGallery(listLocations[i]);
@@ -84,12 +92,22 @@
 </html>
 
 
+<!-- https://www.html5rocks.com/en/tutorials/file/dndfiles/
+uploads?
+
+ -->
+
+ <!-- 
+ http://stackoverflow.com/questions/20881213/converting-json-object-into-javascript-array
+
+ JSON - store location (nameID, location coor)
+
+ then somehow append to it JSON
+ order JSON alphabetically
+ & append to dropdown menu/change map based on location coor
 
 
-
-
-
-
+ -->
 
 
 
