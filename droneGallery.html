@@ -1,70 +1,64 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title>Drone Gallery</title>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico" />
-	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
-    <link rel="stylesheet" href="droneGalleryCSS.css" />
-	<script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-</head>
-<body>
-    <div id="header">
-          <div class="wrap">
-               <p>Drone Gallery</p>
-          </div>
-    </div>
+    <head>
+        <title>Drone Gallery</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico" />
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
+        <link rel="stylesheet" href="droneGalleryCSS.css" />
+        <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <link href="https://fonts.googleapis.com/css?family=Space+Mono:400,400i,700,700i" rel="stylesheet">
+    </head>
+    <body> 
+        <!-- Display of DroneGallery -->
+        <!--     Header for DroneGallery -->
+        <div id="header">
+            <div class="wrap">
+                <p>Drone Gallery</p>
+            </div>
+        </div>
 
-    <!-- Drop down menu for change of location -->
-    <select id="locationMap"  name="search_type" style="margin-right:10px; margin-top:2px;">
-        <option selected="selected" value="directLocation">Location</option>    
-        <option value="northbeach">North Beach</option>
-        <option value="mexico_rocks">Mexico Rocks</option>
-        <option value="belizean_estates">Belizean Estates</option>
-        <option value="sewall_marsh">Sewall Marsh</option>
-    </select>
+        <br/><br/><br/><br/><br/>
+        <div>
+        <!--     Dropdown menu, allow user to navigate based on available layers in JSON -->
+        <select id="locationMap" name="search_type" style="margin-right:10px; margin-top:2px;"></select></div>
+        <br/><br/>
+        <div onKeyPress="return checkSubmit(event)"/>
+            <form>
+                <input type="text" name="search" id = "searchBox" > <!-- image of search logo for start -->
+                <!-- <input type='submit' onclick ="submitFilter()" /> -->
+            </form>
+        </div>
 
-    <a href="droneGalleryAdd.html">Add Drone!</a>
+        <input type="submit" onclick="updateDropDown(document.getElementById('searchBox').value);"><br/>
 
-    <!-- map -->
-    <div id="mapid"></div>
-    
+        <!--     Button to display info about Drone data, via JSON -->
+        <button type="button" id = "displayInfo" onclick="displayInfo()">INFO</button>
+        <!--     Map -->
+        <div class="map" id="mapid"></div>
+        <!--     Downbar that displays the information of the location and data associated -->
+        <div id="myModal" class="modal"></div>  <!-- make as sidebar vs downbar?, can do scroll for long texts... -->
+
+    </body>
+
     <script>
-
-        var mymap = L.map('mapid').setView([ 43.723877, -69.829684], 15);
+        //global variables
+        var mymap = L.map('mapid').setView([ 43.723877, -69.829684], 15); //map - default values
+        var jsonValues; //values from JSON - global
+        var currValues; //what location is currently selected
+        var modal = document.getElementById('myModal');// down bar that contains information for drone location layer//work on down bar that displays information about drone location 
 
         //Open Street Map
         L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
             maxZoom: 18,
             attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
-                '<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
-                'Imagery © <a href="http://mapbox.com">Mapbox</a>',
+            '<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+            'Imagery © <a href="http://mapbox.com">Mapbox</a>',
             id: 'mapbox.streets'
         }).addTo(mymap);
 
-        //Update location on map based on dropdown
-        // go into CSV file and file address that matches & then get x & y...
-        $("#locationMap").change(function() {
-            var addr = ($('#locationMap').val());
-            //console.log(addr);
-            if (addr == "northbeach"){
-                mymap.setView([31.689536, -81.135932],16);
-            }
-            if (addr == "mexico_rocks"){
-                mymap.setView([17.976048, -87.935484],16);
-            }
-            if (addr == "belizean_estates"){
-                mymap.setView([17.976048, -87.935484],16);
-            }
-            if (addr == "sewall_marsh"){
-                mymap.setView([43.723877, -69.829684],16);
-            }
-          });
-
-
-        
         //display each drone images on map from GeoServer
         function droneGallery(location){
             L.tileLayer.wms("http://discovery.ad.smith.edu:8080/geoserver/wms", {
@@ -77,57 +71,101 @@
             }).addTo(mymap);
         }
 
-        //list of drone images uploaded geoserver
-        var listLocations = ["northbeach", "mexico_rocks", "belizean_estates", "sewall_marsh"];
-        var JSONex = {"0":"1","1":"2","2":"3","3":"4"};
+        //access JSON data
+        $.getJSON("droneGalleryJSON.json", function(json) {
+            jsonValues = json;
+            currValues = jsonValues[0];//default
+            for(var i in jsonValues){
+                droneGallery(jsonValues[i].layer);
+            }
+            updateDropDown("");//default
+        });
+
+        //update drop down menu for location
+        function updateDropDown(date){
+
+            html = "<option> LOCATION </option>";
+
+            if(date == ""){ //if no date selected, return entire list for drop down
+                // date format (MM/DD/YY) - use regex?
+                for(var i in jsonValues){
+                    //append all the values of layers from JSON to dropdown menu
+                    html += "<option value="+jsonValues[i].layer+">"+ jsonValues[i].layer+"</option>";
+                }
+                
+            }else{ //if date given, display in drop down with values of that date
+                for(var i in jsonValues){
+                    if(date == jsonValues[i].date){
+                        html += "<option value="+jsonValues[i].layer+">"+ jsonValues[i].layer+"</option>";
+                    }
+                }
+            }
+            document.getElementById("locationMap").innerHTML = html;
+        }
 
 
-        //loop through listLocations, to upload each item onto map
-        for (var i = 0; i<listLocations.length; i++){
-            droneGallery(listLocations[i]);
+        //display modal with details of drone location
+        $("#locationMap").change(function() {
+            var addr = ($('#locationMap').val()); //selected value from dropdown menu
+            for(var i in jsonValues){
+                if(addr == jsonValues[i].layer){
+
+                    mymap.setView([parseFloat(jsonValues[i].xcoor), parseFloat(jsonValues[i].ycoor)], 16); //change coor values based on JSON
+
+                    html = '<div class="modal-content"><div class="modal-header"><span class="close"></span><h2>'+addr+'</h2></div><div class="modal-body"><p>'+jsonValues[i].date+'</p><p>'+jsonValues[i].description+'</p><p>'+jsonValues[i].xcoor+ ', '+ jsonValues[i].ycoor +'</p></div></div>';
+
+                    document.getElementById("myModal").innerHTML = html;
+                    currValues = jsonValues[i]; //assign current drop down value as current
+                };
+
+            }
+            //sidebar  - consider for long text descriptions?
+            modal.style.display = "block"; //display block when value selected
+        });
+
+        //when window clicked (excluding down bar), close the downbar
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+        //display current information, without having to reselect dropdown 
+        function displayInfo(){
+            modal.style.display = "block";
+        }
+
+
+        function checkSubmit(e) {
+            if(e && e.keyCode == 13) {
+                document.forms[0].submit();
+                console.log("SUBMITED");
+            }
         }
 
     </script>
-</body>
+    
 </html>
 
 
 <!-- https://www.html5rocks.com/en/tutorials/file/dndfiles/
 uploads?
 
- -->
+-->
 
- <!-- 
- http://stackoverflow.com/questions/20881213/converting-json-object-into-javascript-array
+<!-- 
+http://stackoverflow.com/questions/20881213/converting-json-object-into-javascript-array
 
- JSON - store location (nameID, location coor)
+JSON - store location (nameID, location coor)
 
- then somehow append to it JSON
- order JSON alphabetically
- & append to dropdown menu/change map based on location coor
+then somehow append to it JSON
+order JSON alphabetically
+& append to dropdown menu/change map based on location coor
 
 
- -->
+-->
 
 
 
 
 <script type="text/javascript">
-//May add later:
-// popup attributes
-// mymap.addEventListener('click', onMapClick);
-
-// popup = new L.Popup({maxWidth: 400});
-
-// function onMapClick(e) {
-
-//     var BBOX = mymap.getBounds().toBBoxString();
-//     var WIDTH = mymap.getSize().x;
-//     var HEIGHT = mymap.getSize().y;
-//     var X = Math.round(mymap.layerPointToContainerPoint(e.layerPoint).x);
-//     var Y = Math.round(mymap.layerPointToContainerPoint(e.layerPoint).y);
-//     var URL = 'http://discovery.ad.smith.edu:8080/geoserver/wms/?SERVICE=WMS&VERSION=1.1.1&REQUEST=GetFeatureInfo&layers=dronegallery:northbeach,dronegallery:mexico_rocks,dronegallery:belizean_estates&BBOX='+BBOX+'&FEATURE_COUNT=5&info_format=application/json&propertyName=appcode,url&HEIGHT='+HEIGHT+'&WIDTH='+WIDTH+'&query_layers=dronegallery:northbeach,dronegallery:mexico_rocks,dronegallery:belizean_estates&SRS=EPSG:4326&buffer=15&X='+X+'&Y='+Y;  
-//     popup.setLatLng(e.latlng);
-//     popup.setContent("<iframe src = '"+URL+"' width='300' height= '100' framreborder = '0'></iframe>");
-//     mymap.openPopup(popup);
 </script>

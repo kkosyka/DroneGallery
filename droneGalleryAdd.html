@@ -1,3 +1,5 @@
+<!-- PUT TO THE SIDE -->
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,6 +11,7 @@
     <link rel="stylesheet" href="droneGalleryCSS.css" />
 	<script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
 </head>
 <body>
     <div id="header">
@@ -19,6 +22,70 @@
     
 
     <script>
+    // function loadJSON(callback) {
+    // //     var xobj = new XMLHttpRequest();
+    // //     xobj.overrideMimeType("application/json");
+    // //     xobj.open('GET', 'droneGalleryJSON.json', true);
+    // //     xobj.onreadystatechange = function () {
+    // //         if (xobj.readyState == 4 && xobj.status == "200") {
+
+    // //             // .open will NOT return a value but simply returns undefined in async mode so use a callback
+    // //             callback(xobj.responseText);
+
+    // //         }
+    // //     }
+    // //     xobj.send(null);
+
+    // // }
+
+    // //     // Call to function with anonymous callback
+    // // loadJSON(function(response) {
+    // //     // Do Something with the response e.g.
+    // //     jsonresponse = JSON.parse(response);
+
+    // //     // Assuming json data is wrapped in square brackets as Drew suggests
+    // //     console.log(jsonresponse[0].name);
+
+
+    // // });
+
+    // $.getJSON("droneGalleryJSON.json", function(json) {
+    //     console.log(json); // this will show the info it in firebug console - json[1].layer
+    //     // var newData = {
+    //     //     "layer": "test2",
+    //     //     "description": "imagery of coral reefs of the coast of Ambergris Caye, Belize.",
+    //     //     "date": "6/18/16",
+    //     //     "xcoor": "17.976048",
+    //     //     "ycoor": "-87.935484"
+    //     // };
+    //     // json.push(newData);
+    //     // console.log("pushed");
+        
+    // });
+
+
+    // function loadJSON(callback) {   
+    //   var xobj = new XMLHttpRequest();
+    //       xobj.overrideMimeType("application/json");
+    //   xobj.open('GET', 'droneGalleryJSON.json', true); // Replace 'my_data' with the path to your file
+    //   xobj.onreadystatechange = function () {
+    //         if (xobj.readyState == 4 && xobj.status == "200") {
+    //           // Required use of an anonymous callback as .open will NOT return a value but simply returns undefined in asynchronous mode
+    //           callback(xobj.responseText);
+    //         }
+    //   };
+    //   xobj.send(null);  
+    // }
+
+    // function init() {
+    // loadJSON(function(response) {
+    //   // Parse JSON string into object
+    //    var actual_JSON = JSON.parse(response);
+    //  });
+    // }
+
+
+
     function insertNewDroneData(passForm) {
         var newLocation = passForm.addLocation.value;
         var newWorkspace = passForm.addWorkspace.value;
@@ -63,7 +130,7 @@
     //http://php.net/manual/en/function.pg-connect.php
     //http://www.w3resource.com/PostgreSQL/PostgreSQL-insert.php
 
-
+//https://katecpp.wordpress.com/2015/09/30/load-external-json/
 
 
 // Location Name,Workspace,GeoServer Store/Layer Name,Xcoor,Ycoor

@@ -1,22 +1,138 @@
-#mapid
-{
-	width: 1250px;
-	height: 550px;
+/*figure out the zoom in and out buttons..*/
+
+/*Map*/
+.map{
+    position:fixed !important;
+    position:absolute;
+    top:0;
+    right:0;
+    bottom:0;
+    left:0;
+    z-index: -1;
 }
 
+/* ------------------------------------------------------- */
+/*Header - DroneGallery "logo"*/
 .wrap {
-		position:relative;
-		margin:0 auto;
-               /*replace 900px with your width*/
-		width:900px;
-	}
+    position:relative;
+    margin:0 auto;
+    width:100%; /*replace 900px with your width*/
+    padding: 0px 15%;
+    font-size: 4vh;
+    font-family: 'Space Mono', monospace;
+}
 
 #header{
-	width:100%;
-	float:left;
-	background: black;
-	color: white;
-	text-align: center;
-	font-size: 20px;
-
+    width:30%;
+    float:left;
+    top:0;
+    left: 0;
+    background: #27464d;
+    position: absolute;
+    color: white;
+    font-family: 'Space Mono', monospace;
+    font-size: 20px;
 }
+
+/* ------------------------------------------------------- */
+/*Drop down menu*/
+#locationMap{
+    position: absolute;
+    left: 0;
+}
+/* ------------------------------------------------------- */
+/*Search bar*/
+input[type=text] {
+    width: 0.1%;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    background-image: url('http://www.clker.com/cliparts/w/r/Q/0/x/D/search-icon-light-grey-md.png');
+    background-size: 15px 15px;
+    font-size: 12px;
+    background-color: white;
+    background-position: 3px 3px; 
+    background-repeat: no-repeat;
+    padding: 3px 3px 3px 23px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+}
+
+input[type=text]:focus {
+    width: 15%;
+}
+
+/* ------------------------------------------------------- */
+
+/*Button to access down bar - display drone data*/
+#displayInfo{
+    float:left;
+}
+
+/* ------------------------------------------------------- */
+/*Modal for down bar*/
+.modal { /* The Modal (background) */
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.05); /* Black w/ opacity */
+    -webkit-animation-name: fadeIn; /* Fade in the background */
+    -webkit-animation-duration: 0.4s;
+    animation-name: fadeIn;
+    animation-duration: 0.4s
+}
+
+.modal-content { /* Modal Content */
+    position: fixed;
+    bottom: 0;
+    background-color: #fefefe;
+    width: 100%;
+    -webkit-animation-name: slideIn;
+    -webkit-animation-duration: 0.4s;
+    animation-name: slideIn;
+    animation-duration: 0.4s
+}
+
+.modal-header {
+    padding: 2px 16px;
+    background-color: #27464d; /*//#27515a*/
+    color: white;
+    font-size: 2vh;
+    font-family: 'Space Mono', monospace;
+}
+
+.modal-body {
+    padding: 2px 20px;
+    font-family: 'Space Mono', monospace;
+}
+
+/* Modal - Add Animation */
+@-webkit-keyframes slideIn {
+    from {bottom: -300px; opacity: 0} 
+    to {bottom: 0; opacity: 1}
+}
+
+@keyframes slideIn {
+    from {bottom: -300px; opacity: 0}
+    to {bottom: 0; opacity: 1}
+}
+
+@-webkit-keyframes fadeIn {
+    from {opacity: 0} 
+    to {opacity: 1}
+}
+
+@keyframes fadeIn {
+    from {opacity: 0} 
+    to {opacity: 1}
+}
+/* ------------------------------------------------------- */
+
+
+

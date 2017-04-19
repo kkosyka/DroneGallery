@@ -1,0 +1,45 @@
+[
+	{
+	    "layer": "mexico_rocks",
+	    "description": "imagery of coral reefs of the coast of Ambergris Caye, Belize.",
+	    "date": "6/18/16",
+	    "xcoor": "17.976048",
+	    "ycoor": "-87.935484"
+	},
+	{
+	    "layer": "belizean_estates",
+	    "description": "imagery of a development in a mangrove swamp also on Ambergris Caye, Belize, very close to Mexico Rocks.",
+	    "date": "6/18/16",
+	    "xcoor": "17.976048",
+	    "ycoor": "-87.935484"
+	},
+	{
+	    "layer": "sewall_marsh",
+	    "description": "a tidewater marsh in coastal Maine.",
+	    "date": "4/23/16",
+	    "xcoor": "43.723877",
+	    "ycoor": "-69.829684"
+	},
+	{
+	    "layer": "northbeach",
+	    "description": "from our recent trip to Georgia.  A northern beach on St. Catherine's Island.",
+	    "date": "3/12/17",
+	    "xcoor": "31.689536",
+	    "ycoor": "-81.135932"
+	},
+	{
+	    "layer": "test1",
+	    "description": "from our recent trip to Georgia.  A northern beach on St. Catherine's Island.",
+	    "date": "3/12/17",
+	    "xcoor": "43",
+	    "ycoor": "-81"
+	},
+	{
+	    "layer": "longtext",
+	    "description": "from our recent trip to Georgia.  A northern beach on St. Catherine's Islandfrom our recent trip to Georgia.  A northern beach on St. Catherine's Islandfrom our recent trip to Georgia.  A northern beach on St. Catherine's Islandfrom our recent trip to Georgia.  A northern beach on St. Catherine's Islandfrom our recent trip to Georgia.  A northern beach on St. Catherine's Islandfrom our recent trip to Georgia.  A northern beach on St. Catherine's Island.",
+	    "date": "3/12/17",
+	    "xcoor": "20.32",
+	    "ycoor": "-9.23"
+	}
+
+]
