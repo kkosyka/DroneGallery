@@ -5,9 +5,7 @@ April 2017
 Drone Gallery
 A tool to display drone flights done by SAL of Smith College.
 Illustrates drone images on map and previews data (name, description, date, coordinates) through GeoServer (.TIF) and local JSON
-
 -->
-
 
 <!DOCTYPE html>
 <html>
@@ -38,7 +36,7 @@ Illustrates drone images on map and previews data (name, description, date, coor
         <br/><br/>
         <div/>
             <form>
-                <input type="text" name="search" id = "searchBox" onkeydown="search()"> <!-- image of search logo for start -->
+                <input type="text" name="search" id = "searchBox" ><!--onkeydown="search()">--> <!-- image of search logo for start -->
                 <!-- <input type='submit' onclick ="submitFilter()" /> -->
             </form>
         </div>
@@ -70,8 +68,6 @@ Illustrates drone images on map and previews data (name, description, date, coor
             id: 'mapbox.streets'
         }).addTo(mymap);
 
-
-
         //display each drone images on map from GeoServer
         function droneGallery(location){
             L.tileLayer.wms("http://discovery.ad.smith.edu:8080/geoserver/wms", {
@@ -84,8 +80,6 @@ Illustrates drone images on map and previews data (name, description, date, coor
             }).addTo(mymap);
         }
 
-
-
         //access JSON data
         $.getJSON("droneGalleryJSON.json", function(json) {
             jsonValues = json;
@@ -97,11 +91,14 @@ Illustrates drone images on map and previews data (name, description, date, coor
         });
 
         //update drop down menu for location
-        function updateDropDown(date){
+        function updateDropDown(searchCondition){
+            //assume layer name doesn't have numbers?
+            var layerRegex = RegExp("[0-9a-zA-Z]*"+searchCondition+"[0-9a-zA-Z]*");
+            var dateCondition = searchCondition.split('/').join('-');
+            var dateRegex = RegExp("[0-9]*-?"+dateCondition+"[0-9]*-?"); //split ? 01 vs 1?
+            html = "<option selected disabled> LOCATION " + searchCondition +"</option>";
 
-            html = "<option selected disabled> LOCATION " + date +"</option>";
-
-            if(date == ""){ //if no date selected, return entire list for drop down
+            if(searchCondition == ""){ //if no date selected, return entire list for drop down
                 // date format (MM/DD/YY) - use regex?
                 for(var i in jsonValues){
                     //append all the values of layers from JSON to dropdown menu
@@ -109,7 +106,9 @@ Illustrates drone images on map and previews data (name, description, date, coor
                 }
             }else{ //if date given, display in drop down with values of that date
                 for(var i in jsonValues){
-                    if(date == jsonValues[i].date){
+                    var conditionDate = (jsonValues[i].date).split('/').join('-');
+                    console.log(conditionDate.match(dateRegex));
+                    if((jsonValues[i].layer).match(layerRegex) || ((conditionDate).match(dateRegex))){ 
                         html += "<option value="+jsonValues[i].layer+">"+ jsonValues[i].layer+"</option>";
                     }
                 }
@@ -117,11 +116,11 @@ Illustrates drone images on map and previews data (name, description, date, coor
             document.getElementById("locationMap").innerHTML = html;
         }
 
-        function search() {
-            if(event.keyCode == 13) {
-                console.log("enter");        
-            }
-        }
+        // function search() {
+        //     if(event.keyCode == 13) {
+        //         console.log("enter");        
+        //     }
+        // }
 
         //display modal with details of drone location
         $("#locationMap").change(function() {
@@ -136,7 +135,6 @@ Illustrates drone images on map and previews data (name, description, date, coor
                     document.getElementById("myModal").innerHTML = html;
                     currValues = jsonValues[i]; //assign current drop down value as current
                 };
-
             }
             //sidebar  - consider for long text descriptions?
             modal.style.display = "block"; //display block when value selected
@@ -153,7 +151,6 @@ Illustrates drone images on map and previews data (name, description, date, coor
             modal.style.display = "block";
         }
 
-
         function checkSubmit(e) {
             if(e && e.keyCode == 13) {
                 document.forms[0].submit();
@@ -162,7 +159,6 @@ Illustrates drone images on map and previews data (name, description, date, coor
         }
 
     </script>
-    
 </html>
 
 
