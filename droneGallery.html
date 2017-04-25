@@ -21,7 +21,6 @@ Illustrates drone images on map and previews data (name, description, date, coor
         <link href="https://fonts.googleapis.com/css?family=Space+Mono:400,400i,700,700i" rel="stylesheet">
     </head>
     <body> 
-        <!-- Display of DroneGallery -->
         <!--     Header for DroneGallery -->
         <div id="header">
             <div class="wrap">
@@ -36,8 +35,7 @@ Illustrates drone images on map and previews data (name, description, date, coor
         <br/><br/>
         <div/>
             <form>
-                <input type="text" name="search" id = "searchBox" ><!--onkeydown="search()">--> <!-- image of search logo for start -->
-                <!-- <input type='submit' onclick ="submitFilter()" /> -->
+                <input type="text" name="search" id = "searchBox" >
             </form>
         </div>
 
@@ -57,7 +55,7 @@ Illustrates drone images on map and previews data (name, description, date, coor
         var mymap = L.map('mapid', {zoomControl:false}).setView([ 43.723877, -69.829684], 16); //map - default values
         var jsonValues; //values from JSON - global
         var currValues; //what location is currently selected
-        var modal = document.getElementById('myModal');// down bar that contains information for drone location layer//work on down bar that displays information about drone location 
+        var modal = document.getElementById('myModal');// down bar that contains information for drone location layer
 
         //Open Street Map
         L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
@@ -92,14 +90,13 @@ Illustrates drone images on map and previews data (name, description, date, coor
 
         //update drop down menu for location
         function updateDropDown(searchCondition){
-            //assume layer name doesn't have numbers?
-            var layerRegex = RegExp("[0-9a-zA-Z]*"+searchCondition+"[0-9a-zA-Z]*");
+          //TODO: make filter more specific versus general
+            var layerRegex = RegExp("[0-9a-zA-Z]*"+searchCondition+"[0-9a-zA-Z]*"); 
             var dateCondition = searchCondition.split('/').join('-');
-            var dateRegex = RegExp("[0-9]*-?"+dateCondition+"[0-9]*-?"); //split ? 01 vs 1?
+            var dateRegex = RegExp("[0-9]*-?"+dateCondition+"[0-9]*-?"); //format: 10/20/16, 5/12/12, 12/1
             html = "<option selected disabled> LOCATION " + searchCondition +"</option>";
 
             if(searchCondition == ""){ //if no date selected, return entire list for drop down
-                // date format (MM/DD/YY) - use regex?
                 for(var i in jsonValues){
                     //append all the values of layers from JSON to dropdown menu
                     html += "<option value="+jsonValues[i].layer+">"+ jsonValues[i].layer+"</option>";
@@ -116,12 +113,6 @@ Illustrates drone images on map and previews data (name, description, date, coor
             document.getElementById("locationMap").innerHTML = html;
         }
 
-        // function search() {
-        //     if(event.keyCode == 13) {
-        //         console.log("enter");        
-        //     }
-        // }
-
         //display modal with details of drone location
         $("#locationMap").change(function() {
             var addr = ($('#locationMap').val()); //selected value from dropdown menu
@@ -130,13 +121,12 @@ Illustrates drone images on map and previews data (name, description, date, coor
 
                     mymap.setView([parseFloat(jsonValues[i].xcoor), parseFloat(jsonValues[i].ycoor)], 16); //change coor values based on JSON
 
-                    html = '<div class="modal-content"><div class="modal-header"><span class="close"></span><h2>'+addr+'</h2></div><div class="modal-body" style="width:95%;max-height:250px;overflow:auto;word-wrap: break-word;"><p>'+jsonValues[i].date+'</p><p>'+jsonValues[i].description+'</p><p>'+jsonValues[i].xcoor+ ', '+ jsonValues[i].ycoor +'</p></div></div>';
+                    html = '<div class="modal-content"><div class="modal-header"><span class="close"></span><h2>'+addr+'</h2></div><div class="modal-body" style="width:95%;max-height:250px;overflow:auto;word-wrap: break-word;"><p>'+jsonValues[i].date+'</p><p>'+jsonValues[i].xcoor+ ', '+ jsonValues[i].ycoor +'</p><p>'+jsonValues[i].description+'</p></div></div>';
 
                     document.getElementById("myModal").innerHTML = html;
                     currValues = jsonValues[i]; //assign current drop down value as current
                 };
             }
-            //sidebar  - consider for long text descriptions?
             modal.style.display = "block"; //display block when value selected
         });
 
@@ -151,12 +141,12 @@ Illustrates drone images on map and previews data (name, description, date, coor
             modal.style.display = "block";
         }
 
-        function checkSubmit(e) {
-            if(e && e.keyCode == 13) {
-                document.forms[0].submit();
-                console.log("SUBMITED");
-            }
-        }
+        // function checkSubmit(e) {
+        //     if(e && e.keyCode == 13) {
+        //         document.forms[0].submit();
+        //         console.log("SUBMITED");
+        //     }
+        // }
 
     </script>
 </html>
