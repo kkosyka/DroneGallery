@@ -7,4 +7,4 @@
 Drone Gallery
 
 A tool to display drone flights done by SAL of Smith College.
-Presents drone images on map and previews data (name, description, date, coordinates) through GeoServer (.TIF) and local JSON
+Presents drone images on map and previews data (name, date, coordinates, and description) through GeoServer (.TIF) and local JSON
