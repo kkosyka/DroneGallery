@@ -36,7 +36,7 @@
 
 /* ------------------------------------------------------- */
 /*Drop down menu*/
-#locationMap{
+#locationMap, #searchType{
     position: absolute;
     left: 0;
 }
