@@ -125,6 +125,8 @@ Illustrates drone images on map and previews data (name, description, date, coor
         });
 
         var markers = new L.LayerGroup();
+        //when marker clicked, zoom into marker location
+        var markerGroup = L.featureGroup().on("click", function(event){ var xcoor = event.layer._latlng.lat,  ycoor = event.layer._latlng.lng; mymap.setView([xcoor, ycoor], 16);});
         //update drop down menu for location
         function updateDropDown(searchCondition){
           //TODO: make filter more specific versus general
@@ -139,7 +141,7 @@ Illustrates drone images on map and previews data (name, description, date, coor
                 for(var i in jsonValues){
                     //append all the values of layers from JSON to dropdown menu
                     html += "<option value="+jsonValues[i].layer+">"+ jsonValues[i].layer+"</option>";
-                    L.marker( [jsonValues[i].xcoor, jsonValues[i].ycoor]).bindPopup( jsonValues[i].layer + " " + jsonValues[i].date  ).addTo( markers );
+                    L.marker( [jsonValues[i].xcoor, jsonValues[i].ycoor]).addTo(markers).addTo(markerGroup);
                 }
             }else{ //if date given, display in drop down with values of that date
                 for(var i in jsonValues){
@@ -147,13 +149,13 @@ Illustrates drone images on map and previews data (name, description, date, coor
                         var conditionDate = (jsonValues[i].date).split('/').join('-');
                         if((conditionDate).match(dateRegex)){ 
                             html += "<option value="+jsonValues[i].layer+">"+ jsonValues[i].layer+"</option>";
-                            L.marker( [jsonValues[i].xcoor, jsonValues[i].ycoor]).bindPopup( 'test' ).addTo( mymap );
+                            L.marker( [jsonValues[i].xcoor, jsonValues[i].ycoor]).addTo(markers).addTo(markerGroup);
                         }
                     }
                     if (searchTypeSelected == "filterLayerName"){
                         if((jsonValues[i].layer).match(layerRegex)){
                             html += "<option value="+jsonValues[i].layer+">"+ jsonValues[i].layer+"</option>";
-                            L.marker( [jsonValues[i].xcoor, jsonValues[i].ycoor]).bindPopup( 'test' ).addTo( markers );
+                            L.marker( [jsonValues[i].xcoor, jsonValues[i].ycoor]).addTo(markers).addTo(markerGroup);
                         }
                     }
                 }
