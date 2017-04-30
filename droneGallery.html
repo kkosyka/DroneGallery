@@ -25,37 +25,39 @@ Illustrates drone images on map and previews data (name, description, date, coor
     </head>
     <body> 
         <!--     Header for DroneGallery -->
-        <div id="header">
-            <div class="wrap">
-                <p>Drone Gallery</p>
+        <div id="FOREGROUND_DIV" class="sample">
+            <div id="header">
+                <div class="wrap">
+                    <p>Drone Gallery</p>
+                </div>
             </div>
-        </div>
 
-        <br/><br/><br/><br/><br/>
-        <div>
-        <!--     Dropdown menu, allow user to navigate based on available layers in JSON -->
-            <select id="locationMap" name="search_type" style="margin-right:10px; margin-top:2px;"></select>
-        </div>
-        <br/><br/>
-        <div>
+            <br/><br/><br/><br/><br/>
+            <div>
             <!--     Dropdown menu, allow user to navigate based on available layers in JSON -->
-            <select id="searchType" name="search_type" style="margin-right:10px; margin-top:2px;">
-                <option value = "" selected disabled>Filter Type</option>
-                <option value="filterLayerName">Layer Name</option>
-                <option value="filterDate">Date</option>
-            </select>
-        </div>
-        <br/>
-        <div/>
-            <form>
-                <input type="text" name="search" id = "searchBox" >
-            </form>
-        </div>
+                <select id="locationMap" name="search_type" style="margin-right:10px; margin-top:2px;"></select>
+            </div>
+            <br/><br/>
+            <div>
+                <!--     Dropdown menu, allow user to navigate based on available layers in JSON -->
+                <select id="searchType" name="search_type" style="margin-right:10px; margin-top:2px;">
+                    <option value = "" selected disabled>Filter Type</option>
+                    <option value="filterLayerName">Layer Name</option>
+                    <option value="filterDate">Date</option>
+                </select>
+            </div>
+            <br/>
+            <div/>
+                <form>
+                    <input type="text" name="search" id = "searchBox" >
+                </form>
+            </div>
 
-        <input type="submit" onclick="updateDropDown(document.getElementById('searchBox').value);"><br/>
+            <input type="submit" id = "sumbitButton" onclick="updateDropDown(document.getElementById('searchBox').value);"><br/>
 
-        <!--     Button to display info about Drone data, via JSON -->
-        <button type="button" id = "displayInfo" onclick="displayInfo()">INFO</button>
+            <!--     Button to display info about Drone data, via JSON -->
+            <button type="button" id = "displayInfo" onclick="displayInfo()">INFO</button>
+        <div>
         <!--     Map -->
         <div class="map" id="mapid"></div>
         <!--     Downbar that displays the information of the location and data associated -->

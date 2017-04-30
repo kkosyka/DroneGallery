@@ -39,6 +39,7 @@
 #locationMap, #searchType{
     position: absolute;
     left: 0;
+/*    pointer-events:none;*/
 }
 /* ------------------------------------------------------- */
 /*Search bar*/
@@ -65,8 +66,9 @@ input[type=text]:focus {
 /* ------------------------------------------------------- */
 
 /*Button to access down bar - display drone data*/
-#displayInfo{
+#displayInfo, #submitInfo{
     float:left;
+
 }
 
 /* ------------------------------------------------------- */
@@ -133,6 +135,7 @@ input[type=text]:focus {
     to {opacity: 1}
 }
 /* ------------------------------------------------------- */
+/*div.sample{
+pointer-events:none;
 
-
-
+}*/
