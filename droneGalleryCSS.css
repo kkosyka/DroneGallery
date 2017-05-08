@@ -1,5 +1,6 @@
 /*figure out the zoom in and out buttons..*/
 
+
 /*Map*/
 .map{
     position:fixed !important;
@@ -13,26 +14,21 @@
 
 /* ------------------------------------------------------- */
 /*Header - DroneGallery "logo"*/
-.wrap {
-    position:relative;
-    margin:0 auto;
-    width:100%; /*replace 900px with your width*/
-    padding: 0px 15%;
-    font-size: 4vh;
-    font-family: 'Space Mono', monospace;
-}
-
-#header{
-    width:30%;
-    float:left;
-    top:0;
-    left: 0;
-    background: #27464d;
+div.header {
     position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 30%;
+    height: 13%;
+    background: #27464d;
     color: white;
     font-family: 'Space Mono', monospace;
-    font-size: 20px;
+    font-size: 4vh;
+    float:left;
+    text-align: center;
 }
+
 
 /* ------------------------------------------------------- */
 /*Drop down menu*/
@@ -60,21 +56,26 @@ input[type=text] {
 }
 
 input[type=text]:focus {
-    width: 15%;
+    width: 148px;
 }
 
 /* ------------------------------------------------------- */
 
 /*Button to access down bar - display drone data*/
-#displayInfo, #submitInfo{
+#displayInfo, #submitButton{
     float:left;
+/*    pointer-events: none;*/
 
+}
+
+#displayInfo{
+/*    pointer-events: none;*/
 }
 
 /* ------------------------------------------------------- */
 /*Modal for down bar*/
 .modal { /* The Modal (background) */
-    display: none; /* Hidden by default */
+    display: none;  /*Hidden by default */
     position: fixed; /* Stay in place */
     z-index: 1; /* Sit on top */
     left: 0;
@@ -87,7 +88,8 @@ input[type=text]:focus {
     -webkit-animation-name: fadeIn; /* Fade in the background */
     -webkit-animation-duration: 0.4s;
     animation-name: fadeIn;
-    animation-duration: 0.4s
+    animation-duration: 0.4s;
+/*    pointer-events: all;*/
 }
 
 .modal-content { /* Modal Content */
@@ -114,6 +116,21 @@ input[type=text]:focus {
     font-family: 'Space Mono', monospace;
 }
 
+/* The Close Button */
+.close {
+    color: white;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
 /* Modal - Add Animation */
 @-webkit-keyframes slideIn {
     from {bottom: -300px; opacity: 0} 
@@ -135,7 +152,18 @@ input[type=text]:focus {
     to {opacity: 1}
 }
 /* ------------------------------------------------------- */
-/*div.sample{
-pointer-events:none;
 
-}*/
+div.absolute{
+    position: absolute;
+    width: 210px;
+    height: 110px;
+    border: 3px solid #27464d;
+    background: #2b544e;
+}
+
+
+
+
+
+
+

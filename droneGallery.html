@@ -26,39 +26,39 @@ Illustrates drone images on map and previews data (name, description, date, coor
     </head>
     <body> 
         <!--     Header for DroneGallery -->
-        <div id="FOREGROUND_DIV" class="sample">
-            <div id="header">
-                <div class="wrap">
-                    <p>Drone Gallery</p>
-                </div>
-            </div>
+       
+            <div class="header"><p>Drone Gallery<p></div>
 
             <br/><br/><br/><br/><br/>
-            <div>
-            <!--     Dropdown menu, allow user to navigate based on available layers in JSON -->
-                <select id="locationMap" name="search_type" style="margin-right:10px; margin-top:2px;"></select>
-            </div>
-            <br/><br/>
-            <div>
+            <div class="absolute">
+                <div>
                 <!--     Dropdown menu, allow user to navigate based on available layers in JSON -->
-                <select id="searchType" name="search_type" style="margin-right:10px; margin-top:2px;">
-                    <option value = "" selected disabled>Filter Type</option>
-                    <option value="filterLayerName">Layer Name</option>
-                    <option value="filterDate">Date</option>
-                </select>
-            </div>
-            <br/>
-            <div/>
-                <form>
-                    <input type="text" name="search" id = "searchBox" >
-                </form>
-            </div>
+                    <select id="locationMap" name="search_type" style="margin-right:10px; margin-top:2px;"></select>
+                </div>
+                <br/>
+                <div>
+                    <!--     Dropdown menu, allow user to navigate based on available layers in JSON -->
+                    <select id="searchType" name="search_type" style="margin-right:10px; margin-top:2px;">
+                        <option value = "" selected disabled>Filter Type</option>
+                        <option value="filterLayerName">Layer Name</option>
+                        <option value="filterDateRange">Date Range</option>
+                        <option value="filterDate">Date</option>
+                    </select>
+                </div>
+                <br/>
+                <div/>
+                    <form>
+                        <input type="text" name="search" id = "searchBox" >
+                    </form>
+                </div>
 
-            <input type="submit" id = "sumbitButton" onclick="updateDropDown(document.getElementById('searchBox').value);"><br/>
+                <button type="button" id = "sumbitButton" onclick="updateDropDown(document.getElementById('searchBox').value);">Submit</button>
+                <br/>
 
-            <!--     Button to display info about Drone data, via JSON -->
-            <button type="button" id = "displayInfo" onclick="displayInfo()">INFO</button>
-        <div>
+                <!--     Button to display info about Drone data, via JSON -->
+                <button type="button" id = "displayInfo" onclick="displayInfo()">INFO</button>
+            </div>
+        
         <!--     Map -->
         <div class="map" id="mapid"></div>
         <!--     Downbar that displays the information of the location and data associated -->
@@ -128,7 +128,20 @@ Illustrates drone images on map and previews data (name, description, date, coor
 
         var markers = new L.LayerGroup();
         //when marker clicked, zoom into marker location
-        var markerGroup = L.featureGroup().on("click", function(event){ var xcoor = event.layer._latlng.lat,  ycoor = event.layer._latlng.lng; mymap.setView([xcoor, ycoor], 16);});
+        var markerGroup = L.featureGroup().on("click", function(event){ var xcoor = event.layer._latlng.lat,  ycoor = event.layer._latlng.lng; mymap.setView([xcoor, ycoor], 16); 
+            for (var i in jsonValues){
+                if (xcoor == jsonValues[i].xcoor && ycoor == jsonValues[i].ycoor){
+                    html = '<div class="modal-content"><div class="modal-header"><span class="close" onclick="X();">&times;</span><h2>'+jsonValues[i].layer+'</h2></div><div class="modal-body" style="width:95%;max-height:250px;overflow:auto;word-wrap: break-word;"><p>'+jsonValues[i].date+'</p><p>'+jsonValues[i].xcoor+ ', '+ jsonValues[i].ycoor +'</p><p>'+jsonValues[i].description+'</p></div></div>';
+                    document.getElementById("myModal").innerHTML = html;
+                    currValues = jsonValues[i]; //assign current drop down value as current
+                    updateDropDown(currValues.layer);
+
+
+                }
+                //modal.style.display = "block";
+            }
+
+        });
         //update drop down menu for location
         function updateDropDown(searchCondition){
           //TODO: make filter more specific versus general
@@ -160,6 +173,16 @@ Illustrates drone images on map and previews data (name, description, date, coor
                             L.marker( [jsonValues[i].xcoor, jsonValues[i].ycoor]).addTo(markers).addTo(markerGroup);
                         }
                     }
+                    if (searchTypeSelected == "filterDateRange"){
+                        var searchDate = searchCondition.split(" ").join("");
+                        var date = new Date(jsonValues[i].date);
+                        var x = new Date(searchDate.split("-")[0]);
+                        var y = new Date(searchDate.split("-")[1]);
+                        if(date >= x && date <= y){
+                            html += "<option value="+jsonValues[i].layer+">"+ jsonValues[i].layer+"</option>";
+                            L.marker( [jsonValues[i].xcoor, jsonValues[i].ycoor]).addTo(markers).addTo(markerGroup);
+                        }
+                    }
                 }
             }
             document.getElementById("locationMap").innerHTML = html;
@@ -184,7 +207,7 @@ Illustrates drone images on map and previews data (name, description, date, coor
 
                     mymap.setView([parseFloat(jsonValues[i].xcoor), parseFloat(jsonValues[i].ycoor)], 16); //change coor values based on JSON
 
-                    html = '<div class="modal-content"><div class="modal-header"><span class="close"></span><h2>'+addr+'</h2></div><div class="modal-body" style="width:95%;max-height:250px;overflow:auto;word-wrap: break-word;"><p>'+jsonValues[i].date+'</p><p>'+jsonValues[i].xcoor+ ', '+ jsonValues[i].ycoor +'</p><p>'+jsonValues[i].description+'</p></div></div>';
+                    html = '<div class="modal-content"><div class="modal-header"><span class="close" onclick="X();"">&times;</span><h2>'+addr+'</h2></div><div class="modal-body" style="width:95%;max-height:250px;overflow:auto;word-wrap: break-word;"><p>'+jsonValues[i].date+'</p><p>'+jsonValues[i].xcoor+ ', '+ jsonValues[i].ycoor +'</p><p>'+jsonValues[i].description+'</p></div></div>';
 
                     document.getElementById("myModal").innerHTML = html;
                     currValues = jsonValues[i]; //assign current drop down value as current
@@ -193,12 +216,18 @@ Illustrates drone images on map and previews data (name, description, date, coor
             modal.style.display = "block"; //display block when value selected
         });
 
-        //when window clicked (excluding down bar), close the downbar
-        window.onclick = function(event) {
-            if (event.target == modal) {
-                modal.style.display = "none";
-            }
+        // TODO: When the user clicks on <span> (x), close the modal
+        function X() {
+            console.log("x clicked");
+            modal.style.display = "none";
         }
+
+        // //when window clicked (excluding down bar), close the downbar
+        // window.onclick = function(event) {
+        //     if (event.target == modal) {
+        //         modal.style.display = "none";
+        //     }
+        // }
         //display current information, without having to reselect dropdown 
         function displayInfo(){
             modal.style.display = "block";
@@ -206,6 +235,31 @@ Illustrates drone images on map and previews data (name, description, date, coor
 
 
     </script>
+
+
+
+<!-- <input type="text" name="datefilter" value="" />
+ 
+<script type="text/javascript">
+$(function() {
+
+  $('input[name="datefilter"]').daterangepicker({
+      autoUpdateInput: false,
+      locale: {
+          cancelLabel: 'Clear'
+      }
+  });
+
+  $('input[name="datefilter"]').on('apply.daterangepicker', function(ev, picker) {
+      $(this).val(picker.startDate.format('MM/DD/YYYY') + ' - ' + picker.endDate.format('MM/DD/YYYY'));
+  });
+
+  $('input[name="datefilter"]').on('cancel.daterangepicker', function(ev, picker) {
+      $(this).val('');
+  });
+
+});
+</script> -->
 </html>
 
 
