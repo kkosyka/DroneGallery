@@ -54,7 +54,6 @@ Illustrates drone images on map and previews data (name, description, date, coor
 
                 <button type="button" id = "sumbitButton" onclick="updateDropDown(document.getElementById('searchBox').value);">Submit</button>
                 <br/>
-
                 <!--     Button to display info about Drone data, via JSON -->
                 <button type="button" id = "displayInfo" onclick="displayInfo()">INFO</button>
             </div>
@@ -135,12 +134,9 @@ Illustrates drone images on map and previews data (name, description, date, coor
                     document.getElementById("myModal").innerHTML = html;
                     currValues = jsonValues[i]; //assign current drop down value as current
                     updateDropDown(currValues.layer);
-
-
                 }
                 //modal.style.display = "block";
             }
-
         });
         //update drop down menu for location
         function updateDropDown(searchCondition){
@@ -232,8 +228,6 @@ Illustrates drone images on map and previews data (name, description, date, coor
         function displayInfo(){
             modal.style.display = "block";
         }
-
-
     </script>
 
 
