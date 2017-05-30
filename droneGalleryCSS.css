@@ -39,6 +39,11 @@ div.header {
     left: 0;
 /*    pointer-events:none;*/
 }
+
+#filterSearch span
+{
+   color: white;
+}
 /* ------------------------------------------------------- */
 /*Search bar*/
 input[type=text] {
@@ -92,6 +97,9 @@ input[type=text]:focus {
     animation-name: fadeIn;
     animation-duration: 0.4s;
 /*    pointer-events: all;*/
+}
+.modal-backdrop{
+    display:none;
 }
 
 .modal-content { /* Modal Content */
