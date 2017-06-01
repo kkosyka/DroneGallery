@@ -26,7 +26,6 @@ Illustrates drone images on map and previews data (name, description, date, coor
     </head>
     <body> 
         <!--     Header for DroneGallery -->
-       
             <div class="header"><p>Drone Gallery<p></div>
 
             <br/><br/><br/><br/><br/>
@@ -41,7 +40,6 @@ Illustrates drone images on map and previews data (name, description, date, coor
                       <input type="radio" name="filterTypeID" value="LayerName" checked/> <span>Layer Name</span>
                       <input type="radio" name="filterTypeID" value="DateRange"/> <span>Date Range</span>
                      <!--  <input type="radio" name="filterTypeID" value="other"> Date -->
-
                     <br/> 
                 </div>
                 <div/>
@@ -55,14 +53,11 @@ Illustrates drone images on map and previews data (name, description, date, coor
                 <!--     Button to display info about Drone data, via JSON -->
                 <button type="button" id = "displayInfo" onclick="displayInfo()">INFO</button>
             </div>
-        
         <!--     Map -->
         <div class="map" id="mapid" data-keyboard="false" data-backdrop="static"></div>
         <!--     Downbar that displays the information of the location and data associated -->
         <div id="myModal" class="modal" role="dialog" data-backdrop="static"></div>  <!-- make as sidebar vs downbar?, can do scroll for long texts... -->
-
     </body>
-
     <script>
         //global variables
         var jsonValues; //values from JSON - global
@@ -142,10 +137,7 @@ Illustrates drone images on map and previews data (name, description, date, coor
 
             var searchTypeSelected = $("input[name='filterTypeID']:checked").val();
             console.log(searchTypeSelected);
-          //TODO: make filter more specific versus general
             var layerRegex = RegExp("[0-9a-zA-Z]*"+searchCondition+"[0-9a-zA-Z]*"); 
-            var dateCondition = searchCondition.split('/').join('-');
-            var dateRegex = RegExp("[0-9]*-?"+dateCondition+"[0-9]*-?"); //format: 10/20/16, 5/12/12, 12/1
             // var searchTypeSelected = document.getElementById('searchType').value;
 
             html = "<option selected disabled> LOCATION " + searchCondition +"</option>";
@@ -214,7 +206,7 @@ Illustrates drone images on map and previews data (name, description, date, coor
             modal.style.display = "block"; //display block when value selected
         });
 
-        // TODO: When the user clicks on <span> (x), close the modal
+        //clicks on <span> (x) in order to close the modal
         function X() {
             console.log("x clicked");
             modal.style.display = "none"
@@ -231,31 +223,6 @@ Illustrates drone images on map and previews data (name, description, date, coor
             modal.style.display = "block";
         }
     </script>
-
-
-
-<!-- <input type="text" name="datefilter" value="" />
- 
-<script type="text/javascript">
-$(function() {
-
-  $('input[name="datefilter"]').daterangepicker({
-      autoUpdateInput: false,
-      locale: {
-          cancelLabel: 'Clear'
-      }
-  });
-
-  $('input[name="datefilter"]').on('apply.daterangepicker', function(ev, picker) {
-      $(this).val(picker.startDate.format('MM/DD/YYYY') + ' - ' + picker.endDate.format('MM/DD/YYYY'));
-  });
-
-  $('input[name="datefilter"]').on('cancel.daterangepicker', function(ev, picker) {
-      $(this).val('');
-  });
-
-});
-</script> -->
 </html>
 
 
@@ -265,27 +232,7 @@ uploads?
 -->
 
 <!-- 
-http://stackoverflow.com/questions/20881213/converting-json-object-into-javascript-array
-
-JSON - store location (nameID, location coor)
-
-then somehow append to it JSON
-order JSON alphabetically
-& append to dropdown menu/change map based on location coor
-
-TODO: based on filter, markup popups 
-click marker, and zoom in...
-switch between map types
-at specific zoom level, show pins
-
-http://wiki.openstreetmap.org/wiki/OpenLayers_Local_Tiles_Example
-http://leafletjs.com/examples/layers-control/
-
-
-
-
 https://www.mapbox.com/api-documentation/#maps
-
 
 original:
 
@@ -316,16 +263,6 @@ original:
       "xcoor": "31.689536",
       "ycoor": "-81.135932"
   },
-
-
-
-        // function checkSubmit(e) {
-        //     if(e && e.keyCode == 13) {
-        //         document.forms[0].submit();
-        //         console.log("SUBMITED");
-        //     }
-        // }
-
 
 -->
 
