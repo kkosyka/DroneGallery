@@ -14,6 +14,7 @@ Presents drone images on map and previews data (name, date, coordinates, and des
 ![Imgur](http://i.imgur.com/HPCLwct.gif)
 
 ![Imgur](http://i.imgur.com/zTONrOD.jpg)
+![Imgur](https://i.imgur.com/HPCLwct.gifv)
 ![TIP$](https://i.imgur.com/rMmC0ST.gif?1)
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
