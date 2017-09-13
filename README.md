@@ -22,3 +22,6 @@ Presents drone images on map and previews data (name, date, coordinates, and des
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 [logo]: https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 2"
+
+![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")
+
