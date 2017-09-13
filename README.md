@@ -14,5 +14,6 @@ Presents drone images on map and previews data (name, date, coordinates, and des
 Here's a walkthrough of implemented user stories:
 
 <img src='https://i.imgur.com/HPCLwct.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<a href="https://imgur.com/HPCLwct"><img src="https://i.imgur.com/HPCLwct.gif" title="source: imgur.com" /></a>
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
