@@ -14,7 +14,7 @@ Presents drone images on map and previews data (name, date, coordinates, and des
 ![Imgur](http://i.imgur.com/HPCLwct.gif)
 
 ![Imgur](http://i.imgur.com/zTONrOD.jpg)
-
+![GIPHY](https://media.giphy.com/media/l378iGlogLxPiYwog/giphy.gif)
 
 ![TIP$](https://i.imgur.com/HPCLwct.gif?v)
 ![TIP$](https://i.imgur.com/rMmC0ST.gif?1)
