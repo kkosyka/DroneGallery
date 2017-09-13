@@ -14,4 +14,4 @@ Presents drone images on map and previews data (name, date, coordinates, and des
 
 <a href="https://i.imgur.com/UMeyxTq.gifv">clearer version</a>
 
-(note: program will not work until on a server)
+(note: program will not work until up & running on a public site)
