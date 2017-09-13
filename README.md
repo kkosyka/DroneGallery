@@ -15,7 +15,7 @@ Here's a walkthrough of implemented user stories:
 
 <a href="https://imgur.com/HPCLwct"><img src="https://i.imgur.com/HPCLwct.gif" title="source: imgur.com" /></a>
 
-![](https://i.imgur.com/HPCLwct.gif)
+![](http://i.imgur.com/HPCLwct.gif)
 
 ![](http://www.reactiongifs.us/wp-content/uploads/2013/10/nuh_uh_conan_obrien.gif)
 
