@@ -27,4 +27,4 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 <a href="https://imgflip.com/gif/1vrksk"><img src="https://i.imgflip.com/1vrksk.gif" title="made at imgflip.com"/></a>
 
-<a href="https://imgur.com/UMeyxTq"><img src="https://i.imgur.com/UMeyxTq.gif" title="source: imgur.com" /></a>
+<a href="https://imgur.com/UMeyxTq"><img src="https://i.imgur.com/UMeyxTq.gif" title="source: imgur.com" height="500px"/></a>
