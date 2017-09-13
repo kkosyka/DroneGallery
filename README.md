@@ -24,3 +24,4 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 [logo]: https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 2"
 
 ![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")
+<iframe src="https://giphy.com/embed/l378iGlogLxPiYwog" width="480" height="252" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/dronegallery-l378iGlogLxPiYwog">via GIPHY</a></p>
