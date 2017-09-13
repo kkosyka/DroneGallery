@@ -9,16 +9,8 @@ Drone Gallery
 A tool to display drone flights done by SAL of Smith College.
 Presents drone images on map and previews data (name, date, coordinates, and description) through GeoServer (.TIF) and local JSON
 
-## Video Walkthrough 
+## Video Demo 
 
-Here's a walkthrough of implemented user stories:
-
-<a href="https://imgur.com/HPCLwct"><img src="https://i.imgur.com/HPCLwct.gif" title="source: imgur.com" /></a>
-
-![](http://i.imgur.com/HPCLwct.gif?1)
-
-![](http://www.reactiongifs.us/wp-content/uploads/2013/10/nuh_uh_conan_obrien.gif)
-
-[Imgur](http://i.imgur.com/HPCLwct.gif)
+![Imgur](http://i.imgur.com/HPCLwct.gif)
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
