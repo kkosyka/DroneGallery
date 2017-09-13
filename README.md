@@ -14,7 +14,7 @@ Presents drone images on map and previews data (name, date, coordinates, and des
 
 ![GIPHY](https://media.giphy.com/media/l378iGlogLxPiYwog/giphy.gif)
 
-<img src='https://media.giphy.com/media/l378iGlogLxPiYwog/giphy.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='https://media.giphy.com/media/l378iGlogLxPiYwog/giphy.gif' title='Video Walkthrough' width='500px' alt='Video Walkthrough' />
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
