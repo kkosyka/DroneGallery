@@ -18,4 +18,6 @@ Here's a walkthrough of implemented user stories:
 
 <img src="http://i.imgur.com/HPCLwct.gifv" alt="This will display an animated GIF" />
 
+<img src='http://i.imgur.com/HPCLwct.gif?1' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
