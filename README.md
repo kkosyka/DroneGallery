@@ -11,17 +11,11 @@ Presents drone images on map and previews data (name, date, coordinates, and des
 
 ## Video Demo 
 
-![Imgur](http://i.imgur.com/HPCLwct.gif)
 
-![Imgur](http://i.imgur.com/zTONrOD.jpg)
 ![GIPHY](https://media.giphy.com/media/l378iGlogLxPiYwog/giphy.gif)
 
-![TIP$](https://i.imgur.com/HPCLwct.gif?v)
-![TIP$](https://i.imgur.com/rMmC0ST.gif?1)
+<img src='https://media.giphy.com/media/l378iGlogLxPiYwog/giphy.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
-[logo]: https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 2"
 
-![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")
-<iframe src="https://giphy.com/embed/l378iGlogLxPiYwog" width="480" height="252" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/dronegallery-l378iGlogLxPiYwog">via GIPHY</a></p>
