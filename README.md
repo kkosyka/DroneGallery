@@ -19,7 +19,7 @@ Presents drone images on map and previews data (name, date, coordinates, and des
 
 <a href='https://i.imgur.com/UMeyxTq.gifv'>larger version</a>
 
-<a href="https://imgur.com/UMeyxTq"><img src="https://i.imgur.com/UMeyxTq.gif" title="source: imgur.com" /></a>
+<a href="https://i.imgur.com/UMeyxTq.gifv">larger</a>
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
