@@ -25,9 +25,8 @@ Illustrates drone images on map and previews data (name, description, date, coor
 
     </head>
     <body> 
-        <!--     Header for DroneGallery -->
+            <!--     Header for DroneGallery -->
             <div class="header"><p>Drone Gallery<p></div>
-
             <br/><br/><br/><br/><br/>
             <div class="absolute">
                 <div>
@@ -36,20 +35,29 @@ Illustrates drone images on map and previews data (name, description, date, coor
                 </div>
                 <br/>
                 <div id="filterSearch">
-                <!-- Radio buttons, allow user to navigate based on available layers in JSON -->
+                    <!-- Radio buttons, allow user to navigate based on available layers in JSON -->
                       <input type="radio" name="filterTypeID" value="LayerName" checked/> <span>Layer Name</span>
                       <input type="radio" name="filterTypeID" value="DateRange"/> <span>Date Range</span>
-                     <!--  <input type="radio" name="filterTypeID" value="other"> Date -->
+                    <!--  <input type="radio" name="filterTypeID" value="other"> Date -->
                     <br/> 
                 </div>
                 <div/>
-                    <form>
-                        <input type="text" name="search" id = "searchBox" >
+                    <form onsubmit="updateDropDown(document.getElementById('searchBox').value);">
+                        <!-- search box for user to filter on specific drone images -->
+                        <input type="text" name="search" id = "searchBox" class="searchBox">
                     </form>
                 </div>
 
                 <button type="button" id = "sumbitButton" onclick="updateDropDown(document.getElementById('searchBox').value);">Submit</button>
+
+
+<!-- TODO -->
+                <button type="button" id = "sumbitButton" onclick="updateDropDown(null);">Clear</button>
                 <br/>
+
+
+
+
                 <!--     Button to display info about Drone data, via JSON -->
                 <button type="button" id = "displayInfo" onclick="displayInfo()">INFO</button>
             </div>
@@ -59,6 +67,12 @@ Illustrates drone images on map and previews data (name, description, date, coor
         <div id="myModal" class="modal" role="dialog" data-backdrop="static"></div>  <!-- make as sidebar vs downbar?, can do scroll for long texts... -->
     </body>
     <script>
+        // function submitFn(obj, evt){
+        //     value = $(obj).find('.searchBox').val().trim();
+        //     console.log(value);
+        //     displayInfo();
+        // }
+
         //global variables
         var jsonValues; //values from JSON - global
         var currValues; //what location is currently selected
@@ -82,7 +96,7 @@ Illustrates drone images on map and previews data (name, description, date, coor
         };
 
         var droneFlights = new L.LayerGroup();
-        //display each drone images on map from GeoServer
+        //display each drone images on map from GeoServer - Smith College Spatial Analysis Lab
         function droneGallery(location){
             L.tileLayer.wms("http://discovery.ad.smith.edu:8080/geoserver/wms", {
                 layers: 'dronegallery:'+location+'',
@@ -99,8 +113,9 @@ Illustrates drone images on map and previews data (name, description, date, coor
             "Drone Flights": droneFlights
         };
 
+        //default settings for map
         var mymap = L.map('mapid', {
-            center: [ 43.723877, -69.829684],
+            center: [43.723877, -69.829684],
             zoom: 16,
             layers: [streets, droneFlights],
             zIndex: 1
@@ -135,34 +150,38 @@ Illustrates drone images on map and previews data (name, description, date, coor
         //update drop down menu for location
         function updateDropDown(searchCondition){
 
-            var searchTypeSelected = $("input[name='filterTypeID']:checked").val();
-            console.log(searchTypeSelected);
+            var searchTypeSelected = $("input[name='filterTypeID']:checked").val(); //get value of search type from rdio buttons
             var layerRegex = RegExp("[0-9a-zA-Z]*"+searchCondition+"[0-9a-zA-Z]*"); 
             // var searchTypeSelected = document.getElementById('searchType').value;
 
-            html = "<option selected disabled> LOCATION " + searchCondition +"</option>";
+            if(searchCondition != null){
+                html = "<option selected disabled> LOCATION " + searchCondition +"</option>";
+            }else{
+                html = "<option selected disabled> LOCATION </option>";
+            }
 
-            if(searchCondition == ""){ //if no date selected, return entire list for drop down
+
+                var empty = document.getElementById('searchBox').value
+                document.getElementById('searchBox').value = ""
+
+            if(searchCondition == "" || searchCondition == null){ //if no date selected, return entire list for drop down
+
                 for(var i in jsonValues){
                     //append all the values of layers from JSON to dropdown menu
                     html += "<option value="+jsonValues[i].layer+">"+ jsonValues[i].layer+"</option>";
                     L.marker( [jsonValues[i].xcoor, jsonValues[i].ycoor]).addTo(markers).addTo(markerGroup);
+
                 }
             }else{ //if date given, display in drop down with values of that date
                 for(var i in jsonValues){
-                    // if (searchTypeSelected == "filterDate"){
-                    //     var conditionDate = (jsonValues[i].date).split('/').join('-');
-                    //     if((conditionDate).match(dateRegex)){ 
-                    //         html += "<option value="+jsonValues[i].layer+">"+ jsonValues[i].layer+"</option>";
-                    //         L.marker( [jsonValues[i].xcoor, jsonValues[i].ycoor]).addTo(markers).addTo(markerGroup);
-                    //     }
-                    // }
+                    // filter based on layer name
                     if (searchTypeSelected == "LayerName"){
                         if((jsonValues[i].layer).match(layerRegex)){
                             html += "<option value="+jsonValues[i].layer+">"+ jsonValues[i].layer+"</option>";
                             L.marker( [jsonValues[i].xcoor, jsonValues[i].ycoor]).addTo(markers).addTo(markerGroup);
                         }
                     }
+                    // filter based on range of dates (1/12/14 - 12/13/14)
                     if (searchTypeSelected == "DateRange"){
                         var searchDate = searchCondition.split(" ").join("");
                         var date = new Date(jsonValues[i].date);
@@ -208,30 +227,38 @@ Illustrates drone images on map and previews data (name, description, date, coor
 
         //clicks on <span> (x) in order to close the modal
         function X() {
-            console.log("x clicked");
             modal.style.display = "none"
         };
 
-        // //when window clicked (excluding down bar), close the downbar
-        // window.onclick = function(event) {
-        //     if (event.target == modal) {
-        //         modal.style.display = "none";
-        //     }
-        // }
+        //when window clicked (excluding down bar), close the downbar
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
         //display current information, without having to reselect dropdown 
         function displayInfo(){
             modal.style.display = "block";
         }
+
+        // function runScript(e) {
+        //     if (e.keyCode == 13) {
+
+        //         console.log("ENTER");
+        //     }
+        // }
     </script>
 </html>
 
 
-<!-- https://www.html5rocks.com/en/tutorials/file/dndfiles/
+<!-- 
+TODO:
+have background map be active during information box/modal active - both active simutaneouly
+add clear button
+
+https://www.html5rocks.com/en/tutorials/file/dndfiles/
 uploads?
 
--->
-
-<!-- 
 https://www.mapbox.com/api-documentation/#maps
 
 original:
