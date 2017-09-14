@@ -1,4 +1,4 @@
-# DroneGallery
+# Drone Gallery
 
 ### Spatial Analysis Lab - Smith College
 ### Kalynn Kosyka 
