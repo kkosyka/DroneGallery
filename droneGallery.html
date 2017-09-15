@@ -1,6 +1,6 @@
 <!-- Spatial Analysis Lab - Smith College
 Kalynn Kosyka 
-April 2017
+April 2017 - Present
 
 
 Drone Gallery
@@ -49,15 +49,8 @@ Illustrates drone images on map and previews data (name, description, date, coor
                 </div>
 
                 <button type="button" id = "sumbitButton" onclick="updateDropDown(document.getElementById('searchBox').value);">Submit</button>
-
-
-<!-- TODO -->
                 <button type="button" id = "sumbitButton" onclick="updateDropDown(null);">Clear</button>
                 <br/>
-
-
-
-
                 <!--     Button to display info about Drone data, via JSON -->
                 <button type="button" id = "displayInfo" onclick="displayInfo()">INFO</button>
             </div>
@@ -67,12 +60,6 @@ Illustrates drone images on map and previews data (name, description, date, coor
         <div id="myModal" class="modal" role="dialog" data-backdrop="static"></div>  <!-- make as sidebar vs downbar?, can do scroll for long texts... -->
     </body>
     <script>
-        // function submitFn(obj, evt){
-        //     value = $(obj).find('.searchBox').val().trim();
-        //     console.log(value);
-        //     displayInfo();
-        // }
-
         //global variables
         var jsonValues; //values from JSON - global
         var currValues; //what location is currently selected
@@ -92,7 +79,6 @@ Illustrates drone images on map and previews data (name, description, date, coor
         var baseLayers = {
             "Streets": streets,
             "Satellite": satellite
-            // "Grayscale": grayscale  - keep it simple w 2 map types?
         };
 
         var droneFlights = new L.LayerGroup();
@@ -159,8 +145,6 @@ Illustrates drone images on map and previews data (name, description, date, coor
             }else{
                 html = "<option selected disabled> LOCATION </option>";
             }
-
-
                 var empty = document.getElementById('searchBox').value
                 document.getElementById('searchBox').value = ""
 
@@ -242,56 +226,17 @@ Illustrates drone images on map and previews data (name, description, date, coor
             modal.style.display = "block";
         }
 
-        // function runScript(e) {
-        //     if (e.keyCode == 13) {
-
-        //         console.log("ENTER");
-        //     }
-        // }
     </script>
 </html>
 
 
 <!-- 
-TODO:
-have background map be active during information box/modal active - both active simutaneouly
+TODO
+have background map be active during information box/modal active - both active simutaneouly...
 connect submit with ENTER
 
 https://www.html5rocks.com/en/tutorials/file/dndfiles/
-uploads?
-
 https://www.mapbox.com/api-documentation/#maps
-
-original:
-
-{
-      "layer": "mexico_rocks",
-      "description": "imagery of coral reefs of the coast of Ambergris Caye, Belize.",
-      "date": "6/18/16",
-      "xcoor": "17.976048",
-      "ycoor": "-87.935484"
-  },
-
-  {
-      "layer": "belizean_estates",
-      "description": "imagery of a development in a mangrove swamp also on Ambergris Caye, Belize, very close to Mexico Rocks.",
-      "date": "6/18/16",
-      "xcoor": "17.976048",
-      "ycoor": "-87.935484"
-  },
-
-
-...
-
-
-{
-      "layer": "northbeach",
-      "description": "from our recent trip to Georgia.  A northern beach on St. Catherine's Island.",
-      "date": "3/12/17",
-      "xcoor": "31.689536",
-      "ycoor": "-81.135932"
-  },
-
 -->
 
 
