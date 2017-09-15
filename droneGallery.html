@@ -217,6 +217,7 @@ Illustrates drone images on map and previews data (name, description, date, coor
                     mymap.setView([parseFloat(jsonValues[i].xcoor), parseFloat(jsonValues[i].ycoor)], 16); //change coor values based on JSON
 
                     html = '<div class="modal-content"><div class="modal-header"><span class="close" onclick="X();"">&times;</span><h2>'+addr+'</h2></div><div class="modal-body" style="width:95%;max-height:250px;overflow:auto;word-wrap: break-word;"><p>'+jsonValues[i].date+'</p><p>'+jsonValues[i].xcoor+ ', '+ jsonValues[i].ycoor +'</p><p>'+jsonValues[i].description+'</p></div></div>';
+                    console.log(addr);
 
                     document.getElementById("myModal").innerHTML = html;
                     currValues = jsonValues[i]; //assign current drop down value as current
@@ -254,7 +255,7 @@ Illustrates drone images on map and previews data (name, description, date, coor
 <!-- 
 TODO:
 have background map be active during information box/modal active - both active simutaneouly
-add clear button
+connect submit with ENTER
 
 https://www.html5rocks.com/en/tutorials/file/dndfiles/
 uploads?
