@@ -1,0 +1,45 @@
+[
+{
+"date":"6/18/16",
+"description":"imagery of coral reefs of the coast of Ambergris Caye, Belize.",
+"layer":"mexico_rocks",
+"xcoor":"17.999619",
+"ycoor":"-87.913876"
+},
+{
+"date":"6/18/16",
+"description":"imagery of a development in a mangrove swamp also on Ambergris Caye, Belize, very close to Mexico Rocks.",
+"layer":"belizean_estates",
+"xcoor":"17.973244",
+"ycoor":"-87.959358"
+},
+{
+"date":"4/23/16",
+"description":"a tidewater marsh in coastal Maine.",
+"layer":"sewall_marsh",
+"xcoor":"43.723877",
+"ycoor":"-69.829684"
+},
+{
+"date":"3/12/17",
+"description":"from our recent trip to Georgia.  A northern beach on St. Catherine's Island.",
+"layer":"northbeach",
+"xcoor":"31.684522",
+"ycoor":"-81.132717"
+},
+{
+"date":"10/10/17",
+"description":"Smith College Campus",
+"layer":"smithCollege",
+"xcoor":"42.318310",
+"ycoor":"-72.637223"
+},
+{
+"date":"6/8/17",
+"description":"Fitzgerald Lake",
+"layer":"20170608_42m",
+"xcoor":"42.3517",
+"ycoor":"-72.6668"
+},
+
+]

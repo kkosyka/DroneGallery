@@ -111,7 +111,7 @@ Illustrates drone images on map and previews data (name, description, date, coor
         L.control.layers(baseLayers, droneImages, {position: 'topright'}).addTo(mymap);
 
         //access JSON data
-        $.getJSON("droneGalleryJSON.json", function(json) {
+        $.getJSON("droneGalleryJSON1.json", function(json) {
             jsonValues = json;
             currValues = jsonValues[0];//default
             for(var i in jsonValues){
