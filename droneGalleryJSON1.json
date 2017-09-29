@@ -35,11 +35,17 @@
 "ycoor":"-72.637223"
 },
 {
-"date":"6/8/17",
-"description":"Fitzgerald Lake",
-"layer":"20170608_42m",
-"xcoor":"42.3517",
-"ycoor":"-72.6668"
+"date": "dsf", 
+"description": "sdfg", 
+"layer": "!!!!!", 
+"xcoor": "sdfg", 
+"ycoor": "fsdg"
 },
-
+{
+"date": "ads", 
+"description": "add", 
+"layer": "add", 
+"xcoor": "asd", 
+"ycoor": "ads"
+}
 ]

@@ -3,7 +3,7 @@
 import os, sys, json
 from Tkinter import *
 
-file = "droneGalleryJSON1.json"
+file = "droneGalleryJSON.json"
 
 root = Tk()
 addLabel = Label( root, text="ADD", font=(None, 25))
@@ -39,7 +39,8 @@ def deleteLastLine():
 	lines = readFile.readlines()
 	readFile.close()
 	w = open(file,'w')
-	w.writelines([item for item in lines[:-2]])
+	w.writelines([item for item in lines[:-9]])
+	w.writelines("}\n")
 	w.writelines("]")
 	w.close()
 
@@ -59,23 +60,6 @@ def displayLine(changeLayer): #edit line - when JSON dumps, it changes the order
 	        	if (playlist[i]["layer"] == changeLayer):
 	        		layerNameEntry.insert(1, playlist[i]["layer"])
 	        		display(playlist[i]["description"], playlist[i]["date"], playlist[i]["xcoor"], playlist[i]["ycoor"])
-		# 			# descriptionEntry.insert("1.0", playlist[i]["description"])
-		# 			# dateEntry.insert(0, playlist[i]["date"])
-		# 			# xCoorEntry.insert(0, playlist[i]["xcoor"])
-		# 			# yCoorEntry.insert(0, playlist[i]["ycoor"])
-		# 			# playlist[i]["layer"] = "PLEASE WORK"
-	 #        		playlist[i]["description"] = "PLEASE WORK"
-	 #        		playlist[i]["date"] = "PLEASE WORK"
-	 #        		playlist[i]["xcoor"] = "PLEASE WORK"
-	 #        		playlist[i]["ycoor"] = "PLEASE WORK"
-	 #        	data.append(playlist[i])
-
-		# f.seek(0)
-		# f.writelines("[\n")
-		# f.writelines(["%s\n" % json.dumps(i) for i in data[0:1]])
-		# f.writelines([",%s\n" % json.dumps(i) for i in data[1:]])
-		# f.writelines(",\n]")
-		# f.truncate()
 
 def modifyLine():
 	data = []
@@ -84,7 +68,7 @@ def modifyLine():
 	newDate = dateEntry.get()
 	newXCoor = xCoorEntry.get()
 	newYCoor = yCoorEntry.get()
-	print ("Modified to: \n" +  newLayerName + " \n" + newDesc + " \n" + newDate + " \n" + newXCoor + "\n" + newYCoor)
+	print ("Modified to: \n" +  newLayerName + "\n" + newDesc + "\n" + newDate + "\n" + newXCoor + "\n" + newYCoor)
 	if os.path.exists(file):
 	    with open(file, 'r+') as f:
 	    	playlist = json.load(f)
@@ -113,9 +97,8 @@ def addLine():
 	lines = readFile.readlines()
 	readFile.close()
 	w = open(file,'w')
-	# lastLine = (item for item in lines[-8:-1])
-	#w.writelines([item for item in lines[:-8]])
-	w.writelines([item for item in lines[:-1]])
+	w.writelines([item for item in lines[:-2]])
+	w.writelines("},\n")
 	# w.writelines([item for item in lastLine] + ",")
 	# w.writelines(',{"layer": "' + layerName +'", "description": "'+ description +'", "date": "' + date + '", "xcoor": "'+ xcoor +'", "ycoor": "' + ycoor + '"}')
 	w.writelines('{\n"date": "' + date + '", \n"description": "' +description + '", \n"layer": "' + layerName+ '", \n"xcoor": "' + xcoor + '", \n"ycoor": "' + ycoor + '"\n}')
