@@ -3,6 +3,7 @@
 ### Spatial Analysis Lab - Smith College
 ### Kalynn Kosyka 
 ### April 2017 - Present
+(HTML, CSS, JavaScript, Python)</br>
 
 Drone Gallery
 
